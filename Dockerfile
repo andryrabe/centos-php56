@@ -1,24 +1,30 @@
 # =============================================================================
 # jdeathe/centos-ssh-apache-php
 #
-# CentOS-6, Apache 2.2, PHP 5.3, PHP memcached 1.0, PHP APC 3.1, Composer
+# CentOS-6, Apache 2.2, PHP 5.6, PHP memcached 1.0, PHP APC 3.1, Composer
 # 
 # =============================================================================
 FROM jdeathe/centos-ssh:centos-6
 
-MAINTAINER James Deathe <james.deathe@gmail.com>
+MAINTAINER Stefano Corallo <stefanorg@gmail.com>
+
+# ---------
+# EPEL
+# --------
+RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+
 
 # -----------------------------------------------------------------------------
-# Base Apache, PHP
+# Base Apache, PHPOrder
 # -----------------------------------------------------------------------------
-RUN yum --setopt=tsflags=nodocs -y install \
+RUN yum -y install \
 	elinks \
 	httpd \
 	mod_ssl \
-	php \
-	php-cli \
-	php-pecl-apc \
-	php-pecl-memcached \
+	php56w \
+	php56w-cli \
+	php56w-pecl-apcu \
+	php56w-pecl-memcached \
 	&& rm -rf /var/cache/yum/* \
 	&& yum clean all
 
@@ -129,11 +135,11 @@ RUN sed -i \
 # APC op-code cache stats
 #	Note there will be 1 cache per process if using mod_fcgid
 # -----------------------------------------------------------------------------
-RUN sed -i \
+#RUN sed -i \
 	-e "s~'ADMIN_PASSWORD','password'~'ADMIN_PASSWORD','apc!123'~g" \
 	-e "s~'DATE_FORMAT', 'Y/m/d H:i:s'~'DATE_FORMAT', 'Y-m-d H:i:s'~g" \
-	-e "s~php_uname('n');~gethostname();~g" \
-	/usr/share/php-pecl-apc/apc.php
+	-e "s~php_uname('n');~gethostname();~g" #\
+#	/usr/share/doc/php56w-pecl-apcu-4.0.7/apc.php
 
 # -----------------------------------------------------------------------------
 # Add default service users
@@ -158,8 +164,8 @@ ADD var/www/app/vhost.conf /var/www/app/vhost-ssl.conf
 ADD var/www/app/public_html/index.php /var/www/app/public_html/index.php
 
 # Add PHP Info _phpinfo.php and Add APC Control Panel _apc.php
-RUN echo '<?php phpinfo(); ?>' > /var/www/app/public_html/_phpinfo.php \
-	&& cp /usr/share/php-pecl-apc/apc.php /var/www/app/public_html/_apc.php
+RUN echo '<?php phpinfo(); ?>' > /var/www/app/public_html/_phpinfo.php #\
+	#&& cp /usr/share/doc/php56w-pecl-apcu-4.0.7/apc.php /var/www/app/public_html/_apc.php
 
 # -----------------------------------------------------------------------------
 # Create the SSL VirtualHosts configuration file
