@@ -1,14 +1,13 @@
 # =============================================================================
-# jdeathe/centos-ssh-apache-php
+# stefanorg/centos-php56
 #
-# CentOS-6, Apache 2.2, PHP 5.6, PHP memcached 1.0, PHP APC 3.1, Composer
+# CentOS-6, Apache 2.2, PHP 5.6, APC
 # 
 # =============================================================================
 FROM jdeathe/centos-ssh:centos-6
 
 MAINTAINER Stefano Corallo <stefanorg@gmail.com>
-ENV http_proxy=http://proxy.regione.piemonte.it:80
-ENV https_proxy=http://proxy.regione.piemonte.it:80
+
 # -----------------------------------------------------------------------------
 # PHP 5.6 repository
 # -----------------------------------------------------------------------------
