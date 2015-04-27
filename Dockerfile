@@ -8,9 +8,9 @@ FROM jdeathe/centos-ssh:centos-6
 
 MAINTAINER Stefano Corallo <stefanorg@gmail.com>
 
-# ---------
-# EPEL
-# --------
+# -----------------------------------------------------------------------------
+# PHP 5.6 repository
+# -----------------------------------------------------------------------------
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 
 
@@ -136,9 +136,10 @@ RUN sed -i \
 #	Note there will be 1 cache per process if using mod_fcgid
 # -----------------------------------------------------------------------------
 #RUN sed -i \
-	-e "s~'ADMIN_PASSWORD','password'~'ADMIN_PASSWORD','apc!123'~g" \
-	-e "s~'DATE_FORMAT', 'Y/m/d H:i:s'~'DATE_FORMAT', 'Y-m-d H:i:s'~g" \
-	-e "s~php_uname('n');~gethostname();~g" #\
+#	-e "s~'ADMIN_PASSWORD','password'~'ADMIN_PASSWORD','apc!123'~g" \
+#	-e "s~'DATE_FORMAT', 'Y/m/d H:i:s'~'DATE_FORMAT', 'Y-m-d H:i:s'~g" \
+#	-e "s~php_uname('n');~gethostname();~g"
+#\
 #	/usr/share/doc/php56w-pecl-apcu-4.0.7/apc.php
 
 # -----------------------------------------------------------------------------

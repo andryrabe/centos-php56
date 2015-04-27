@@ -63,7 +63,7 @@
 <?php 
   if (extension_loaded('apc')) {
 ?>
-          <a href="/_apc.php" class="btn btn-lg btn-default">APC info</a>
+          <a href="/APC-Admin-master/index.php" class="btn btn-lg btn-default">APC info</a>
 <?php
   }
 ?>
