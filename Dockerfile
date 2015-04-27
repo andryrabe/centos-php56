@@ -7,7 +7,8 @@
 FROM jdeathe/centos-ssh:centos-6
 
 MAINTAINER Stefano Corallo <stefanorg@gmail.com>
-
+ENV http_proxy=http://proxy.regione.piemonte.it:80
+ENV https_proxy=http://proxy.regione.piemonte.it:80
 # -----------------------------------------------------------------------------
 # PHP 5.6 repository
 # -----------------------------------------------------------------------------
@@ -163,10 +164,10 @@ RUN ln -s /var/www/app /home/app \
 ADD var/www/app/vhost.conf /var/www/app/vhost.conf
 ADD var/www/app/vhost.conf /var/www/app/vhost-ssl.conf
 ADD var/www/app/public_html/index.php /var/www/app/public_html/index.php
+ADD var/www/app/APC-Admin-master /var/www/app/public_html/APC-Admin-master
 
-# Add PHP Info _phpinfo.php and Add APC Control Panel _apc.php
-RUN echo '<?php phpinfo(); ?>' > /var/www/app/public_html/_phpinfo.php #\
-	#&& cp /usr/share/doc/php56w-pecl-apcu-4.0.7/apc.php /var/www/app/public_html/_apc.php
+# Add PHP Info _phpinfo.php
+RUN echo '<?php phpinfo(); ?>' > /var/www/app/public_html/_phpinfo.php
 
 # -----------------------------------------------------------------------------
 # Create the SSL VirtualHosts configuration file

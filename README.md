@@ -1,7 +1,7 @@
 centos-ssh-apache-php
 =====================
 
-Docker Image including CentOS-6, Apache 2.2, PHP 5.3, PHP memcached 1.0, PHP APC 3.1, Composer.
+Docker Image including CentOS-6, Apache 2.2, PHP 5.6, PHP memcached 1.0, PHP APCu, Composer.
 
 The Dockerfile can be used to build a base image that can be run as-is or used as the bases for other more specific builds.
 
