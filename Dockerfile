@@ -26,6 +26,7 @@ RUN yum -y install \
 	php56w-pecl-apcu \
 	php56w-pecl-memcached \
     php56w-pecl-xdebug \
+    php56w-pecl-opcache \
 	&& rm -rf /var/cache/yum/* \
 	&& yum clean all
 
