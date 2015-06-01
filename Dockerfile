@@ -165,6 +165,7 @@ RUN ln -s /var/www/app /home/app \
 ADD var/www/app/vhost.conf /var/www/app/vhost.conf
 ADD var/www/app/vhost.conf /var/www/app/vhost-ssl.conf
 ADD var/www/app/public_html/index.php /var/www/app/public_html/index.php
+ADD var/www/app/public_html/adminer.php /var/www/app/public_html/adminer.php
 ADD var/www/app/APC-Admin-master /var/www/app/public_html/APC-Admin-master
 
 # Add PHP Info _phpinfo.php

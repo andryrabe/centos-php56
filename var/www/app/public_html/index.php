@@ -36,7 +36,7 @@
         <p>This CentOS / Apache / PHP <?php print PHP_SAPI === 'cgi-fcgi' ? '(FastCGI)' : '(Standard)'; ?> service is running in a Docker container.</p>
 <?php
   // Display the connection details for the docker linked MySQL database if defined.
-  if (getenv('DB_MYSQL_PORT_3306_TCP_ADDR') && getenv('DB_MYSQL_PORT_3306_TCP_PORT')) {
+  if (getenv('MYSQL_PORT_3306_TCP_ADDR') && getenv('MYSQL_PORT_3306_TCP_PORT')) {
 ?>
         <p>The MySQL database is accessible from the host <?php print htmlentities(getenv('DB_MYSQL_PORT_3306_TCP_ADDR')) ?> or DB_MYSQL on port <?php print htmlentities(getenv('DB_MYSQL_PORT_3306_TCP_PORT')); ?></p>
 <?php
@@ -67,7 +67,7 @@
 <?php
   }
 ?>
-        <?php if (getenv('DB_MYSQL_PORT_3306_TCP_ADDR')) { ?>
+        <?php if (getenv('MYSQL_PORT_3306_TCP_ADDR')) { ?>
             <a href="/adminer.php" class="btn btn-lg btn-default">Adminer</a>
         <?php } ?>
         </p>
