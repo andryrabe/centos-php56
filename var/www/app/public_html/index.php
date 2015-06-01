@@ -67,6 +67,9 @@
 <?php
   }
 ?>
+        <?php if (getenv('DB_MYSQL_PORT_3306_TCP_ADDR')) { ?>
+            <a href="/adminer.php" class="btn btn-lg btn-default">Adminer</a>
+        <?php } ?>
         </p>
       </div>
     </div>
